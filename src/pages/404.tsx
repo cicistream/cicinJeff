@@ -6,7 +6,7 @@ const Error = () => (
     <div>
         <div className={styles.error}>
             <FrownOutlined />
-            <h1>404 Not Found</h1>
+            <h1 className="text-pink-purple">404 Not Found</h1>
         </div>
     </div>
 );

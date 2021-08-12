@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import HomeBg from '@/images/sea.jpg';
-import BaseLayout from '@/layouts/BaseLayout.tsx';
+import BaseLayout from '../../layouts/BaseLayout';
 
 const HomeContainer: React.FC = () => {
     const [value, setValue] = useState<number>(0);
@@ -10,13 +9,10 @@ const HomeContainer: React.FC = () => {
     }, []);
 
     return (
-        <div className="bg-black">
-            <BaseLayout>
-                <img src={HomeBg} />
-                <h1>home page</h1>
-                <p>time: {value}</p>
-            </BaseLayout>
-        </div>
+        <BaseLayout>
+            <h1>home page</h1>
+            <p>time: {value}</p>
+        </BaseLayout>
     );
 };
 
