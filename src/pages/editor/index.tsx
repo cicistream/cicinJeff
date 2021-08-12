@@ -1,27 +1,27 @@
 import React, { FC, useEffect, useRef } from 'react';
 import Vditor from 'vditor';
-import { editorConfig } from './editorConfig';
+import styles from './index.less';
 
 interface EditorProps {
-  editorConfig: IOptions,
+    editorConfig: IOptions;
 }
 
-const Editor:FC<EditorProps> = ({ editorConfig }) => {
-  const editorRef = useRef<HTMLDivElement>(null);
-  const vditor = useRef<object>({});
-  // Vditor.preview()
+const Editor: FC<EditorProps> = ({ editorConfig }) => {
+    const editorRef = useRef<HTMLDivElement>(null);
+    const vditor = useRef<object>({});
+    // Vditor.preview()
 
-  useEffect(() => {
-    if (!vditor.current) {
-      vditor.current = new Vditor(editorRef.current!, editorConfig)
-    }
-  }, []);
+    useEffect(() => {
+        if (!vditor.current) {
+            vditor.current = new Vditor(editorRef.current!, editorConfig);
+        }
+    }, []);
 
-  return (
-    <div id="vditor" ref={editorRef}>
-      {}
-    </div>
-  )
-}
+    return (
+        <div className={styles.editorContainer} id="vditor" ref={editorRef}>
+            {}
+        </div>
+    );
+};
 
-export default { Editor };
+export default Editor;
