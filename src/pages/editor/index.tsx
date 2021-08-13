@@ -1,26 +1,21 @@
-import React, { FC, useEffect, useRef } from 'react';
-import Vditor from 'vditor';
-import styles from './index.less';
+import React, { FC } from 'react';
+import { Input } from 'antd';
+import { VditorEditor } from '../../components/Vditor';
+import BaseLayout from '@/layouts/BaseLayout';
+import { useState } from 'react';
 
-interface EditorProps {
-    editorConfig: IOptions;
-}
-
-const Editor: FC<EditorProps> = ({ editorConfig }) => {
-    const editorRef = useRef<HTMLDivElement>(null);
-    const vditor = useRef<object>({});
-    // Vditor.preview()
-
-    useEffect(() => {
-        if (!vditor.current) {
-            vditor.current = new Vditor(editorRef.current!, editorConfig);
-        }
-    }, []);
-
+const Editor: FC = () => {
+    const [title, setTitle] = useState<string>('');
     return (
-        <div className={styles.editorContainer} id="vditor" ref={editorRef}>
-            {}
-        </div>
+        <BaseLayout>
+            <Input
+                className="h-16 input border-r-0 mt-6"
+                placeholder="请输入标题"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+            <VditorEditor id="Date" />
+        </BaseLayout>
     );
 };
 

@@ -19,14 +19,14 @@ const Headers: React.FC<IHeaderProps> = ({ userInfo }) => {
         },
     ];
     return (
-        <div className={`p-4 bg-purple-cyan ${styles.headerContainer}`}>
-            <Link className="text-2xl  absolute uppercase" to="/">
+        <div className={`text p-4 bg-purple-cyan ${styles.headerContainer}`}>
+            <Link className="text-xl absolute uppercase" to="/">
                 {userInfo?.name || 'cici'} Blog
             </Link>
             <div className="absolute flex flex-row top-4 right-0">
                 {banner.map((item) => (
                     <Link to={item.link} className="mr-6">
-                        <p className="text-3xl uppercase text-pink-purple">
+                        <p className="text-xl uppercase text-white">
                             {item.label}
                         </p>
                     </Link>

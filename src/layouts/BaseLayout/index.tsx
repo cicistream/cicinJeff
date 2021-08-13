@@ -1,5 +1,6 @@
 import React from 'react';
 import Headers from '../components/Headers';
+import Footer from '../components/Footer';
 
 type IBaseLayoutProps = {
     name?: string;
@@ -11,6 +12,7 @@ const BaseLayout: React.FC<IBaseLayoutProps> = ({ children }) => {
         <div>
             <Headers />
             {children}
+            <Footer />
         </div>
     );
 };

@@ -1,6 +1,64 @@
-let toolbar;
-if (window.innerWidth < 768) {
-    toolbar = [
+export const defaultOptions: IOptions = {
+    after: undefined,
+    cache: {
+        enable: true,
+    },
+    // cdn: Constants.CDN,
+    classes: {
+        preview: '',
+    },
+    comment: {
+        enable: false,
+    },
+    counter: {
+        enable: false,
+        type: 'markdown',
+    },
+    debugger: false,
+    fullscreen: {
+        index: 90,
+    },
+    height: 600,
+    hint: {
+        delay: 200,
+        emoji: {
+            '+1': '👍',
+            '-1': '👎',
+            confused: '😕',
+            eyes: '👀️',
+            heart: '❤️',
+            rocket: '🚀️',
+            smile: '😄',
+            tada: '🎉️',
+        },
+        // emojiPath: `${Constants.CDN}/dist/images/emoji`,
+        extend: [],
+        parse: true,
+    },
+    icon: 'ant',
+    lang: 'zh_CN',
+    mode: 'sv',
+    outline: {
+        enable: false,
+        position: 'left',
+    },
+    placeholder: '',
+    preview: {
+        // actions: ['desktop', 'tablet', 'mobile', 'mp-wechat', 'zhihu'],
+        delay: 100,
+        // hljs: Constants.HLJS_OPTIONS,
+        // markdown: Constants.MARKDOWN_OPTIONS,
+        // math: Constants.MATH_OPTIONS,
+        maxWidth: 800,
+        mode: 'both',
+        // theme: Constants.THEME_OPTIONS,
+    },
+    resize: {
+        enable: false,
+        position: 'bottom',
+    },
+    theme: 'classic',
+    toolbar: [
         'emoji',
         'headings',
         'bold',
@@ -28,103 +86,39 @@ if (window.innerWidth < 768) {
         'undo',
         'redo',
         '|',
+        'fullscreen',
         'edit-mode',
-        'content-theme',
-        'code-theme',
-        'export',
         {
             name: 'more',
-            toolbar: ['fullscreen', 'both', 'preview', 'info', 'help'],
+            toolbar: [
+                'both',
+                'code-theme',
+                'content-theme',
+                'export',
+                'outline',
+                'preview',
+                'devtools',
+                'info',
+                'help',
+            ],
         },
-    ];
-}
-
-export default {
-    // _lutePath: `http://192.168.0.107:9090/lute.min.js?${new Date().getTime()}`,
-    _lutePath: 'src/js/lute/lute.min.js',
-    // cdn: 'http://localhost:9000',
-    toolbar,
-    mode: 'wysiwyg',
-    height: window.innerHeight + 100,
-    outline: {
-        enable: true,
-        position: 'right',
-    },
-    debugger: true,
-    typewriterMode: true,
-    placeholder: 'Hello, Vditor!',
-    preview: {
-        markdown: {
-            toc: true,
-            mark: true,
-            footnotes: true,
-            autoSpace: true,
-        },
-        math: {
-            engine: 'KaTeX',
-        },
-    },
+    ],
     toolbarConfig: {
-        pin: true,
+        hide: false,
+        pin: false,
     },
-    counter: {
-        enable: true,
-        type: 'text',
-    },
-    hint: {
-        emojiPath:
-            'https://cdn.jsdelivr.net/npm/vditor@1.8.3/dist/images/emoji',
-        emojiTail:
-            '<a href="https://ld246.com/settings/function" target="_blank">设置常用表情</a>',
-        emoji: {
-            sd: '💔',
-            j: 'https://unpkg.com/vditor@1.3.1/dist/images/emoji/j.png',
-        },
-        parse: false,
-        extend: [
-            {
-                key: '@',
-                hint: (key: string) => {
-                    console.log(key);
-                    if ('vanessa'.indexOf(key.toLocaleLowerCase()) > -1) {
-                        return [
-                            {
-                                value: '@Vanessa',
-                                html: '<img src="https://avatars0.githubusercontent.com/u/970828?s=60&v=4"/> Vanessa',
-                            },
-                        ];
-                    }
-                    return [];
-                },
-            },
-            {
-                key: '#',
-                hint: (key: string) => {
-                    console.log(key);
-                    if ('vditor'.indexOf(key.toLocaleLowerCase()) > -1) {
-                        return [
-                            {
-                                value: '#Vditor',
-                                html: '<span style="color: #999;">#Vditor</span> ♏ 一款浏览器端的 Markdown 编辑器，支持所见即所得（富文本）、即时渲染（类似 Typora）和分屏预览模式。',
-                            },
-                        ];
-                    }
-                    return [];
-                },
-            },
-        ],
-    },
-    tab: '\t',
+    typewriterMode: false,
+    undoDelay: 800,
     upload: {
-        accept: 'image/*,.mp3, .wav, .rar',
-        token: 'test',
-        url: '/api/upload/editor',
-        linkToImgUrl: '/api/upload/fetch',
-        filename(name: string) {
-            return name
-                .replace(/[^(a-zA-Z0-9\u4e00-\u9fa5\.)]/g, '')
-                .replace(/[\?\\/:|<>\*\[\]\(\)\$%\{\}@~]/g, '')
-                .replace('/\\s/g', '');
-        },
+        extraData: {},
+        fieldName: 'file[]',
+        filename: (name: string) => name.replace(/\W/g, ''),
+        linkToImgUrl: '',
+        max: 10 * 1024 * 1024,
+        multiple: true,
+        url: '',
+        withCredentials: false,
     },
+    value: '',
+    width: '100%',
 };
