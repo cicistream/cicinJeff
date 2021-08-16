@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { UserInfo } from '../../utils/global';
+import { useUserStore } from '../../stores/userInfo';
+import { observer } from 'mobx-react';
 import styles from './index.less';
 
-type IHeaderProps = {
-    userInfo?: UserInfo;
-};
-
-const Headers: React.FC<IHeaderProps> = ({ userInfo }) => {
+const Headers: React.FC = () => {
     const banner = [
         {
             label: 'home',
@@ -18,10 +15,13 @@ const Headers: React.FC<IHeaderProps> = ({ userInfo }) => {
             link: '/about',
         },
     ];
+
+    const { baseInfo } = useUserStore();
+
     return (
         <div className={`text p-4 bg-purple-cyan ${styles.headerContainer}`}>
             <Link className="text-xl absolute uppercase" to="/">
-                {userInfo?.name || 'cici'} Blog
+                {baseInfo?.name || 'Jeff'} Blog
             </Link>
             <div className="absolute flex flex-row top-4 right-0">
                 {banner.map((item) => (
@@ -36,4 +36,4 @@ const Headers: React.FC<IHeaderProps> = ({ userInfo }) => {
     );
 };
 
-export default Headers;
+export default observer(Headers);

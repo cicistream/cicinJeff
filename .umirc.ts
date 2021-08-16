@@ -25,11 +25,13 @@ export default defineConfig({
     //         },
     //     ],
     // ],
+    tailwindcss: {
+        tailwindCssFilePath: '@/tailwind.css',
+        tailwindConfigFilePath: 'tailwind.config.js', // 默认取值 tailwindConfigFilePath || join(process.env.APP_ROOT || api.cwd, 'tailwind.config.js'),
+    },
     extraPostCSSPlugins: [
         require('postcss-import'),
-        require('tailwindcss')({
-            config: './tailwind.config.js',
-        }),
+        require('tailwindcss'),
         require('postcss-nested'),
     ],
 });

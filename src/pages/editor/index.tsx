@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Input } from 'antd';
 import { VditorEditor } from '../../components/Vditor';
-import BaseLayout from '@/layouts/BaseLayout';
+import BaseLayout from '../../layouts/BaseLayout';
 import { useState } from 'react';
 
 const Editor: FC = () => {
