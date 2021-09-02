@@ -1,12 +1,11 @@
 import CreateStore from './createStore';
-
 interface IUserInfo {
     name: string;
     password: string;
     avatar?: string;
 }
 
-function userInfo() {
+export function userInfo() {
     return {
         baseInfo: {} as IUserInfo,
         setUserInfo() {

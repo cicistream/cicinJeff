@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
-import { Form, Input } from 'antd';
+import React from 'react';
+import { Form, Input, Button } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { useUserStore } from '@/stores/userInfo';
 
 const FormItem = Form.Item;
 
@@ -11,20 +12,38 @@ const FormProps = {
 
 const Login: React.FC = () => {
     const history = useHistory();
+
     const submit = (values: any) => {
-        console.log(values);
-        localStorage.setItem(values.name, values);
-        history.replace('/home');
+        localStorage.setItem('login', 'true');
+        console.log('Success:', values);
+        history.replace('/');
     };
 
     return (
-        <div>
-            <Form {...FormProps} name="login" onFinish={submit}>
+        <div className="relative top-32 h-full bg-white">
+            <Form
+                {...FormProps}
+                name="login"
+                className="flex flex-col justify-between w-1/2 text mx-auto p-32 "
+                onFinish={submit}
+            >
                 <FormItem required label="name">
-                    <Input placeholder="pleace"></Input>
+                    <Input className="input" placeholder="pleace"></Input>
                 </FormItem>
                 <FormItem required label="password">
-                    <Input type="password" placeholder="pleace "></Input>
+                    <Input
+                        className="input"
+                        type="password"
+                        placeholder="pleace"
+                    ></Input>
+                </FormItem>
+                <FormItem>
+                    <Button
+                        className="btn bg-orange-secondary"
+                        htmlType="submit"
+                    >
+                        Submit
+                    </Button>
                 </FormItem>
             </Form>
         </div>

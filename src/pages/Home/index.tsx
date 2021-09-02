@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import BaseLayout from '../../layouts/BaseLayout';
+import BaseLayout from '@/layouts/BaseLayout';
+import { useHistory } from 'react-router-dom';
+import { useUserStore } from '@/stores/userInfo';
 
-const HomeContainer: React.FC = (props) => {
-    const [value, setValue] = useState<number>(0);
+const HomeContainer: React.FC = () => {
+    const { baseInfo } = useUserStore();
+    let history = useHistory();
+
     useEffect(() => {
-        setValue(Date.now());
+        if (!localStorage.getItem('login')) {
+            history.push('/login');
+        }
         // console.log(baseInfo);
     }, []);
 
     return (
-        <BaseLayout>
+        <BaseLayout sideBar>
             <h1>home page</h1>
-            <p>time: {value}</p>
+            <p>time:{Date.now()} </p>
         </BaseLayout>
     );
 };

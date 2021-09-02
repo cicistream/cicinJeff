@@ -37,6 +37,7 @@ function createLocalStore<
     return {
         withStore,
         useStore,
+        StoreContext,
     };
 }
 export default createLocalStore;

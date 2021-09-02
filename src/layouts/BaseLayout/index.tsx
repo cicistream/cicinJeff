@@ -1,30 +1,34 @@
 import React from 'react';
 import Headers from '../components/Headers';
 import Footer from '../components/Footer';
-import { Button } from 'antd';
-import { withUserStore, useUserStore } from '../../stores/userInfo';
+import SidePanel from '../components/SidePanel';
 
 type IBaseLayoutProps = {
     name?: string;
     children: React.ReactNode;
+    sideBar?: boolean;
+    footer?: React.ReactChild | null;
 };
 
-const BaseLayout: React.FC<IBaseLayoutProps> = ({ children }) => {
-    const { setUserInfo } = useUserStore();
-
+const BaseLayout: React.FC<IBaseLayoutProps> = ({
+    sideBar = false,
+    footer,
+    children,
+}) => {
     return (
-        <div>
+        <div className="relative">
             <Headers />
-            <Button
-                // className="btn text-white absolute top-20 w-20"
-                onClick={setUserInfo}
-            >
-                Click
-            </Button>
-            {children}
-            <Footer />
+            {sideBar ? (
+                <div className="m-16 flex min-h-screen">
+                    <SidePanel />
+                    {children}
+                </div>
+            ) : (
+                children
+            )}
+            {footer || <Footer />}
         </div>
     );
 };
 
-export default withUserStore(BaseLayout);
+export default BaseLayout;
